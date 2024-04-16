@@ -1,7 +1,5 @@
 package StructuralHorizon.core.user.model;
 
-import static jakarta.persistence.CascadeType.ALL;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;

@@ -1,7 +1,5 @@
 package StructuralHorizon.core.user.model;
 
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
 
 @Component
