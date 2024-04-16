@@ -1,6 +1,5 @@
-package StructuralHorizon.features.turbines.models;
+package StructuralHorizon.features.materials.concrete.models;
 
-import java.util.List;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -12,9 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TurbineDto {
+public class ConcreteUpdateDto {
     private UUID id;
     private String number;
     private String location;
-    private List<UUID> projects;
 }

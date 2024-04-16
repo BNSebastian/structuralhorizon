@@ -1,17 +1,12 @@
-package StructuralHorizon.features.turbines.models;
+package StructuralHorizon.features.project.models;
 
-import java.util.UUID;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "turbines")
-public class Turbine {
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

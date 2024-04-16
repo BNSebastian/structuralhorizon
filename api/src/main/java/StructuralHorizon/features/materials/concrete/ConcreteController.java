@@ -1,9 +1,10 @@
-package StructuralHorizon.features.turbines;
+package StructuralHorizon.features.materials.concrete;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import StructuralHorizon.shared.Endpoints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -17,47 +18,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import StructuralHorizon.features.turbines.models.TurbineCreateDto;
-import StructuralHorizon.features.turbines.models.TurbineDto;
-import StructuralHorizon.features.turbines.models.TurbineUpdateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteCreateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateDto;
 
 @RestController
-@RequestMapping("api/turbine")
+@RequestMapping(Endpoints.concrete)
 @RequiredArgsConstructor
-public class TurbineController {
+public class ConcreteController {
 
     @Autowired
-    private final ITurbineService service;
+    private final IConcreteService service;
 
     @PostMapping("/save")
-    public ResponseEntity<TurbineDto> save(@RequestBody TurbineCreateDto request) {
-        Optional<TurbineDto> optionalEntity = service.save(request);
+    public ResponseEntity<ConcreteDto> save(@RequestBody ConcreteCreateDto request) {
+        Optional<ConcreteDto> optionalEntity = service.save(request);
         return optionalEntity
-                .map(entity -> ResponseEntity.ok(entity))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<TurbineDto>> getAll() {
-        Optional<List<TurbineDto>> optionalEntities = service.getAll();
+    public ResponseEntity<List<ConcreteDto>> getAll() {
+        Optional<List<ConcreteDto>> optionalEntities = service.getAll();
         return optionalEntities
-                .map(entities -> ResponseEntity.ok(entities))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/getById")
-    public ResponseEntity<TurbineDto> getById(@RequestParam("id") UUID id) {
-        Optional<TurbineDto> optionalEntity = service.getById(id);
+    public ResponseEntity<ConcreteDto> getById(@RequestParam("id") UUID id) {
+        Optional<ConcreteDto> optionalEntity = service.getById(id);
         return optionalEntity
-                .map(entity -> ResponseEntity.ok(entity))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/update")
-    public ResponseEntity<TurbineDto> update(@RequestBody TurbineUpdateDto request) {
-        Optional<TurbineDto> optionalEntity = service.update(request);
+    public ResponseEntity<ConcreteDto> update(@RequestBody ConcreteUpdateDto request) {
+        Optional<ConcreteDto> optionalEntity = service.update(request);
         return optionalEntity
-                .map(entity -> ResponseEntity.ok(entity))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -77,10 +78,10 @@ public class TurbineController {
     }
 
     @GetMapping("/getPage")
-    public ResponseEntity<Page<TurbineDto>> getPage(
+    public ResponseEntity<Page<ConcreteDto>> getPage(
             @RequestParam("pageIndex") int pageIndex,
             @RequestParam("pageSize") int pageSize) {
-        Page<TurbineDto> page = service.getPage(pageIndex, pageSize);
+        Page<ConcreteDto> page = service.getPage(pageIndex, pageSize);
         return ResponseEntity.ok(page);
     }
 }

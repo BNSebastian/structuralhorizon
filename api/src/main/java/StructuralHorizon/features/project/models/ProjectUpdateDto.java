@@ -1,17 +1,17 @@
-package StructuralHorizon.features.turbines.models;
-
-import java.util.UUID;
+package StructuralHorizon.features.project.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TurbineUpdateDto {
+public class ProjectUpdateDto {
     private UUID id;
     private String number;
     private String location;

@@ -1,4 +1,4 @@
-package StructuralHorizon.features.turbines.models;
+package StructuralHorizon.features.project.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TurbineCreateDto {
+public class ProjectCreateDto {
     String number;
     String location;
 }

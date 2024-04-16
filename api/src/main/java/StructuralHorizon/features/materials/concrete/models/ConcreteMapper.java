@@ -1,14 +1,14 @@
-package StructuralHorizon.features.turbines.models;
+package StructuralHorizon.features.materials.concrete.models;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class TurbineMapper {
-	public static TurbineDto mapToDto(Turbine request) {
-		TurbineDto.TurbineDtoBuilder builder = TurbineDto.builder()
-				.id(request.getId())
-				.number(request.getNumber())
-				.location(request.getLocation());
+public class ConcreteMapper {
+	public static ConcreteDto mapToDto(Concrete request) {
+		ConcreteDto.ConcreteDtoBuilder builder = ConcreteDto.builder()
+														   .id(request.getId())
+														   .number(request.getNumber())
+														   .location(request.getLocation());
 
 		// if (request.getProjects() != null) {
 		// builder.projects(request.getProjects()
@@ -22,8 +22,8 @@ public class TurbineMapper {
 		return builder.build();
 	}
 
-	public static Turbine mapToEntity(TurbineCreateDto request) {
-		return Turbine
+	public static Concrete mapToEntity(ConcreteCreateDto request) {
+		return Concrete
 				.builder()
 				.number(request.getNumber())
 				.location(request.getLocation())

@@ -1,4 +1,4 @@
-package StructuralHorizon.features.turbines;
+package StructuralHorizon.features.materials.concrete;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,18 +11,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import StructuralHorizon.features.turbines.models.Turbine;
-import StructuralHorizon.features.turbines.models.TurbineCreateDto;
-import StructuralHorizon.features.turbines.models.TurbineDto;
-import StructuralHorizon.features.turbines.models.TurbineMapper;
-import StructuralHorizon.features.turbines.models.TurbineUpdateDto;
+import StructuralHorizon.features.materials.concrete.models.Concrete;
+import StructuralHorizon.features.materials.concrete.models.ConcreteCreateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteMapper;
+import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateDto;
 
 @Slf4j
 @Service
-public class TurbineService implements ITurbineService {
+public class ConcreteService implements IConcreteService {
 
     @Autowired
-    private ITurbineRepository repository;
+    private IConcreteRepository repository;
 
     /**
      * Saves a new Turbine to the database.
@@ -31,13 +31,13 @@ public class TurbineService implements ITurbineService {
      * @return the saved Turbine data, or an empty optional if the save failed
      */
     @Override
-    public Optional<TurbineDto> save(TurbineCreateDto request) {
+    public Optional<ConcreteDto> save(ConcreteCreateDto request) {
         if (request != null) {
-            Turbine pendingEntity = TurbineMapper.mapToEntity(request);
+            Concrete pendingEntity = ConcreteMapper.mapToEntity(request);
             if (pendingEntity != null) {
-                Turbine savedEntity = repository.save(pendingEntity);
+                Concrete savedEntity = repository.save(pendingEntity);
                 log.info("save:: created entity with id: {}", savedEntity.getId());
-                return Optional.of(TurbineMapper.mapToDto(savedEntity));
+                return Optional.of(ConcreteMapper.mapToDto(savedEntity));
             } else {
                 log.error("save:: could not map request to entity");
                 return Optional.empty();
@@ -55,12 +55,12 @@ public class TurbineService implements ITurbineService {
      *         no Turbines were found
      */
     @Override
-    public Optional<List<TurbineDto>> getAll() {
-        List<Turbine> users = repository.findAll();
+    public Optional<List<ConcreteDto>> getAll() {
+        List<Concrete> users = repository.findAll();
         log.info("getAll:: retrieving all entities");
         return Optional.ofNullable(users
                 .stream()
-                .map(TurbineMapper::mapToDto)
+                .map(ConcreteMapper::mapToDto)
                 .collect(Collectors.toList()));
     }
 
@@ -72,17 +72,17 @@ public class TurbineService implements ITurbineService {
      *         Turbine was found with the given ID
      */
     @Override
-    public Optional<TurbineDto> getById(UUID id) {
+    public Optional<ConcreteDto> getById(UUID id) {
         if (id == null) {
             log.error("getById:: id is null");
             return Optional.empty();
         }
 
-        Optional<Turbine> entityOptional = repository.findById(id);
+        Optional<Concrete> entityOptional = repository.findById(id);
 
         return entityOptional.map(entity -> {
             log.info("getById:: retrieved entity with id: {}", id);
-            return Optional.of(TurbineMapper.mapToDto(entity));
+            return Optional.of(ConcreteMapper.mapToDto(entity));
         }).orElseGet(() -> {
             log.error("getById:: could not retrieve entity with id: {}", id);
             return Optional.empty();
@@ -96,7 +96,7 @@ public class TurbineService implements ITurbineService {
      * @return the updated Turbine data, or an empty optional if the update failed
      */
     @Override
-    public Optional<TurbineDto> update(TurbineUpdateDto request) {
+    public Optional<ConcreteDto> update(ConcreteUpdateDto request) {
         if (request == null) {
             log.error("update:: invalid request");
             return Optional.empty();
@@ -109,16 +109,16 @@ public class TurbineService implements ITurbineService {
             return Optional.empty();
         }
 
-        Optional<Turbine> optionalTurbine = repository.findById(id);
+        Optional<Concrete> optionalTurbine = repository.findById(id);
 
         if (optionalTurbine.isPresent()) {
-            Turbine existingEntity = optionalTurbine.get();
+            Concrete existingEntity = optionalTurbine.get();
             existingEntity.setNumber(request.getNumber());
             existingEntity.setLocation(request.getLocation());
-            Turbine updatedEntity = repository.save(existingEntity);
+            Concrete updatedEntity = repository.save(existingEntity);
 
             log.info("update:: entity with id: {} updated", updatedEntity.getId());
-            return Optional.of(TurbineMapper.mapToDto(updatedEntity));
+            return Optional.of(ConcreteMapper.mapToDto(updatedEntity));
         } else {
             log.error("update:: entity with id {} not found", id);
             return Optional.empty();
@@ -139,7 +139,7 @@ public class TurbineService implements ITurbineService {
             return false;
         }
 
-        Optional<Turbine> entityOptional = repository.findById(id);
+        Optional<Concrete> entityOptional = repository.findById(id);
 
         return entityOptional.map(entity -> {
             if (entity != null) {
@@ -155,10 +155,10 @@ public class TurbineService implements ITurbineService {
         });
     }
 
-    public Page<TurbineDto> getPage(int pageIndex, int pageSize) {
-        Page<Turbine> page = repository.findAll(PageRequest.of(pageIndex, pageSize));
+    public Page<ConcreteDto> getPage(int pageIndex, int pageSize) {
+        Page<Concrete> page = repository.findAll(PageRequest.of(pageIndex, pageSize));
         log.info("getPage:: returning page with index '{}' and size '{}'", pageIndex, pageSize);
-        return page.map(TurbineMapper::mapToDto);
+        return page.map(ConcreteMapper::mapToDto);
     }
 
 }
