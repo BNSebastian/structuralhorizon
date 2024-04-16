@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>number</mat-label>
+    <input matInput formControlName="number" />
+    @if (form.controls['number'].hasError('required')) {
+    <mat-error>This field is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>location</mat-label>
+    <input matInput formControlName="location" />
+    @if (form.controls['location'].hasError('required')) {
+    <mat-error>This field is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="w-full">Save</button>
+</form>

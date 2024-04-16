@@ -1,0 +1,55 @@
+@hostname = {{protocol}}://{{host}}:{{port}}
+@apiEndpoint = /api/activity
+@contentType = application/json
+
+### login
+# @name user
+POST {{hostname}}/api/auth/authenticate HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email": "seb@cheneb.com",
+    "password": "seb"
+}
+
+@user-token = {{user.response.body.token}}
+
+### save
+# @name entry
+POST {{hostname}}/api/activity/save HTTP/1.1
+Authorization: Bearer {{user-token}} 
+Content-Type: {{contentType}}
+
+{
+    "name": "project #1",
+    "description": "top secret project"
+}
+
+@entry-id = {{entry.response.body.id}}
+
+### get all
+GET {{hostname}}/api/activity HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### get by id
+GET {{hostname}}/api/activity/getById?id={{entry-id}} HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### update
+PUT {{hostname}}/api/activity/update HTTP/1.1
+Authorization: Bearer {{user-token}} 
+Content-Type: {{contentType}}
+
+{
+    "id": "{{entry-id}}",
+    "name": "updated field",
+    "description": "updated field"
+}
+
+### delete
+DELETE {{hostname}}/api/activity/delete?id={{entry-id}} HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### get page
+GET {{hostname}}/api/activity/getPage?pageIndex=0&pageSize=15 HTTP/1.1
+Authorization: Bearer {{user-token}} 

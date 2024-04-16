@@ -1,0 +1,17 @@
+<div class="h-screen flex-col justify-center items-center background-main">
+  <div class="p-4">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Create a new turbine
+          </mat-panel-title> </mat-expansion-panel-header
+        ><app-turbine-save
+          (onSaveSuccess)="listComp.handleSaveSuccess()"
+        ></app-turbine-save>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <app-turbine-list #listComp></app-turbine-list>
+</div>

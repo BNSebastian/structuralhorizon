@@ -1,0 +1,13 @@
+$main: "https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg";
+
+@mixin set-page-background($url) {
+  background-image: url($url); /* Replace with the path to your image */
+  background-size: cover; /* Cover the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-attachment: fixed; /* Keep the background fixed */
+}
+
+.background-main {
+  @include set-page-background($main);
+}

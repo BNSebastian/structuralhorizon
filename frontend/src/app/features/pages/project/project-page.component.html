@@ -1,0 +1,16 @@
+<div class="h-screen">
+  <div class="m-4">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Add a new activity </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-activity-save
+          (onSaveSuccess)="list.handleSaveSuccess()"
+        ></app-activity-save>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <app-project #list></app-project>
+</div>

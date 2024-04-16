@@ -1,0 +1,16 @@
+<div class="h-screen flex-col justify-center items-center background-main">
+  <div class="p-4">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Create a new activity type </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-type-save
+          (onSaveSuccess)="typeList.handleSaveSuccess()"
+        ></app-type-save>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <app-type-list #typeList></app-type-list>
+</div>

@@ -1,0 +1,55 @@
+@hostname = {{protocol}}://{{host}}:{{port}}
+@apiEndpoint = /api/turbine
+@contentType = application/json
+
+### login
+# @name user
+POST {{hostname}}/api/auth/authenticate HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email": "seb@cheneb.com",
+    "password": "seb"
+}
+
+@user-token = {{user.response.body.token}}
+
+### save
+# @name entry
+POST {{hostname}}/api/turbine/save HTTP/1.1
+Authorization: Bearer {{user-token}} 
+Content-Type: {{contentType}}
+
+{
+    "number": "0123010230123",
+    "location": "Constanta"
+}
+
+@entry-id = {{entry.response.body.id}}
+
+### get all
+GET {{hostname}}/api/turbine/getAll HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### get by id
+GET {{hostname}}/api/turbine/getById?id={{entry-id}} HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### update
+PUT {{hostname}}/api/turbine/update HTTP/1.1
+Authorization: Bearer {{user-token}} 
+Content-Type: {{contentType}}
+
+{
+    "id": "{{entry-id}}",
+    "number": "updated field",
+    "location": "updated field"
+}
+
+### delete
+DELETE {{hostname}}/api/turbine/delete?id={{entry-id}} HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### get page
+GET {{hostname}}/api/turbine/getPage?pageIndex=0&pageSize=15 HTTP/1.1
+Authorization: Bearer {{user-token}} 

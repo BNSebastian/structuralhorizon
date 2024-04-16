@@ -1,0 +1,174 @@
+<div class="h-screen flex-col justify-center items-center background-main">
+  <div class="p-2 md:p-4 lg:p-8">
+    <mat-tab-group>
+      <!-- PROJECTS -->
+      <mat-tab label="Project">
+        <mat-tab-group>
+          <mat-tab label="Selection">
+            <mat-selection-list #project [multiple]="false">
+              <div class="text-xl italic">
+                Project selected:<span class="text-2xl not-italic font-bold">
+                  {{
+                    project.selectedOptions.hasValue()
+                      ? project.selectedOptions.selected[0].value
+                      : "none"
+                  }}
+                </span>
+              </div>
+              @for (item of projects; track $index) { @if
+              (canAccess(item.users)) {
+              <mat-list-option
+                [value]="item.name"
+                (click)="selectProject(item)"
+                >{{ item.name }}</mat-list-option
+              >
+              } }
+            </mat-selection-list>
+          </mat-tab>
+
+          <mat-tab label="Monthly">
+            @if (selectedProject) {
+            <app-monthly-project-report
+              [projectId]="selectedProject.id"
+            ></app-monthly-project-report>
+            } @else {
+            <div>Please select a project</div>
+            }
+          </mat-tab>
+
+          <mat-tab label="Weekly">
+            @if (selectedProject) {
+            <app-weekly-project-report
+              [projectId]="selectedProject.id"
+            ></app-weekly-project-report>
+            } @else {
+            <div>Please select a project</div>
+            }
+          </mat-tab>
+
+          <mat-tab label="Total">
+            @if (selectedProject) {
+            <app-total-project-report
+              [projectId]="selectedProject.id"
+            ></app-total-project-report>
+            } @else {
+            <div>Please select a project</div>
+            }
+          </mat-tab>
+        </mat-tab-group>
+      </mat-tab>
+
+      <!-- TURBINES -->
+      <mat-tab label="Turbine">
+        <mat-tab-group>
+          <mat-tab label="Entries">
+            <mat-selection-list #turbine [multiple]="false">
+              <div class="text-xl italic">
+                Turbine selected:
+                <span class="text-2xl not-italic font-bold">
+                  {{
+                    turbine.selectedOptions.hasValue()
+                      ? turbine.selectedOptions.selected[0].value
+                      : "none"
+                  }}
+                </span>
+              </div>
+              @for (item of turbines; track $index) {
+              <mat-list-option
+                [value]="item.number"
+                (click)="selectTurbine(item)"
+                >{{ item.number }}</mat-list-option
+              >
+              }
+            </mat-selection-list>
+          </mat-tab>
+
+          <mat-tab label="Monthly">
+            @if (selectedTurbine) {
+            <app-monthly-turbine-report
+              [turbineId]="selectedTurbine.id"
+            ></app-monthly-turbine-report>
+            } @else {
+            <div>Please select a turbine</div>
+            }
+          </mat-tab>
+
+          <mat-tab label="Weekly">
+            @if (selectedTurbine) {
+            <app-weekly-turbine-report
+              [turbineId]="selectedTurbine.id"
+            ></app-weekly-turbine-report>
+            } @else {
+            <div>Please select a turbine</div>
+            }
+          </mat-tab>
+
+          <mat-tab label="Total">
+            @if (selectedTurbine) {
+            <app-total-turbine-report
+              [turbineId]="selectedTurbine.id"
+            ></app-total-turbine-report>
+            } @else {
+            <div>Please select a turbine</div>
+            }
+          </mat-tab>
+        </mat-tab-group>
+      </mat-tab>
+
+      <!-- USER -->
+      <mat-tab label="User">
+        <mat-tab-group>
+          <mat-tab label="Entries">
+            <mat-selection-list #user [multiple]="false">
+              <div class="text-xl italic">
+                User selected:
+                <span class="text-2xl not-italic font-bold">
+                  {{
+                    user.selectedOptions.hasValue()
+                      ? user.selectedOptions.selected[0].value
+                      : "none"
+                  }}
+                </span>
+              </div>
+              @for (item of users; track $index) { @if (checkUser(item.name)) {
+              <mat-list-option [value]="item.name" (click)="selectUser(item)">{{
+                item.name
+              }}</mat-list-option>
+              } }
+            </mat-selection-list>
+          </mat-tab>
+
+          <mat-tab label="Monthly">
+            @if (selectedUser) {
+            <app-monthly-user-report
+              [userId]="selectedUser.id"
+            ></app-monthly-user-report>
+            } @else {
+            <div>Please select a user</div>
+            }
+          </mat-tab>
+
+          <mat-tab label="Weekly">
+            @if (selectedUser) {
+            <app-weekly-user-report
+              [userId]="selectedUser.id"
+            ></app-weekly-user-report>
+            } @else {
+            <div>Please select a user</div>
+            }
+          </mat-tab>
+
+          <mat-tab label="Total">
+            @if (selectedUser) {
+            <app-total-user-report
+              [userId]="selectedUser.id"
+            ></app-total-user-report>
+            } @else {
+            <div>Please select a user</div>
+            }
+          </mat-tab>
+        </mat-tab-group>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

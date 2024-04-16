@@ -1,0 +1,97 @@
+@if (formData) {
+<span mat-dialog-title
+  >Updating project: <i>{{ formData.name }}</i></span
+>
+}
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="w-full" floatLabel="always">
+      <mat-label>name</mat-label>
+      <input matInput formControlName="name" />
+      @if (form.controls['name'].hasError('required')) {
+      <mat-error>Field is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-full" floatLabel="always">
+      <mat-label>description</mat-label>
+      <input matInput formControlName="description" />
+      @if (form.controls['description'].hasError('required')) {
+      <mat-error>Field is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+  </form>
+
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Users </mat-panel-title>
+        <mat-panel-description> add or remove users </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      @for (item of users; track $index) {
+      <div class="flex mb-3 justify-between">
+        @if (userBelongsToProject(item)) {
+        <span>{{ item.name }}</span>
+        <div
+          (click)="removeUserFromProject(item.id)"
+          class="w-14 rounded-md p-1 bg-red-300 hover:bg-red-500 hover:cursor-pointer shadow-lg shadow-red-500/50"
+        >
+          remove
+        </div>
+        } @if (!userBelongsToProject(item)) {
+        <span>{{ item.name }}</span>
+        <div
+          (click)="addUserToProject(item.id)"
+          class="w-14 text-center rounded-md p-1 bg-blue-300 hover:bg-blue-500 hover:cursor-pointer shadow-lg shadow-blue-500/50"
+        >
+          add
+        </div>
+        }
+      </div>
+      }
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Turbines </mat-panel-title>
+        <mat-panel-description> add or remove turbines </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      @for (item of turbines; track $index) {
+      <div class="flex mb-3 justify-between">
+        @if (turbineBelongsToProject(item)) {
+        <span>{{ item.number }} ({{ item.location }})</span>
+        <div
+          (click)="removeTurbineFromProject(item.id)"
+          class="w-14 rounded-md p-1 bg-red-300 hover:bg-red-500 hover:cursor-pointer shadow-lg shadow-red-500/50"
+        >
+          remove
+        </div>
+        } @if (!turbineBelongsToProject(item)) {
+        <span>{{ item.number }} ({{ item.location }})</span>
+        <div
+          (click)="addTurbineToProject(item.id)"
+          class="w-14 text-center rounded-md p-1 bg-blue-300 hover:bg-blue-500 hover:cursor-pointer shadow-lg shadow-blue-500/50"
+        >
+          add
+        </div>
+        }
+      </div>
+      }
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+  <button
+    (click)="submitForm()"
+    mat-raised-button
+    [mat-dialog-close]="true"
+    color="primary"
+  >
+    Update
+  </button>
+</mat-dialog-actions>

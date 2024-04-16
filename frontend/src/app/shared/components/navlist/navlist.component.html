@@ -1,0 +1,27 @@
+<div class="flex justify-center mb-2">
+  <button
+    mat-mini-fab
+    color="{{ buttonColor }}"
+    matTooltip="{{ buttonTooltip }}"
+    matTooltipPosition="right"
+    [matMenuTriggerFor]="menu"
+    routerLinkActive="mat-accent"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <mat-icon>{{ buttonIcon }}</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    @for (link of links; track $index) {
+    <button
+      mat-menu-item
+      matTooltip="{{ link.tooltip }}"
+      matTooltipPosition="right"
+      [routerLink]="[link.url]"
+    >
+      <mat-icon>{{ link.icon }}</mat-icon>
+      <span>{{ link.name }}</span>
+    </button>
+    }
+  </mat-menu>
+</div>

@@ -1,0 +1,14 @@
+<table mat-table [dataSource]="reports" class="mat-elevation-z8">
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>type</th>
+    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="minutes">
+    <th mat-header-cell *matHeaderCellDef>minutes</th>
+    <td mat-cell *matCellDef="let element">{{ element.minutes }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+</table>

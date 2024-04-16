@@ -1,0 +1,53 @@
+@hostname = {{protocol}}://{{host}}:{{port}}
+@apiEndpoint = /api/type
+@contentType = application/json
+
+### login
+# @name user
+POST {{hostname}}/api/auth/authenticate HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email": "seb@cheneb.com",
+    "password": "seb"
+}
+
+@user-token = {{user.response.body.token}}
+
+### save
+# @name entry
+POST {{hostname}}/api/type/save HTTP/1.1
+Authorization: Bearer {{user-token}} 
+Content-Type: {{contentType}}
+
+{
+    "name": "working"
+}
+
+@entry-id = {{entry.response.body.id}}
+
+### get all
+GET {{hostname}}/api/type/getAll HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### get by id
+GET {{hostname}}/api/type/getById?id={{entry-id}} HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### update
+PUT {{hostname}}/api/type/update HTTP/1.1
+Authorization: Bearer {{user-token}} 
+Content-Type: {{contentType}}
+
+{
+    "id": "{{entry-id}}",
+    "name": "updated value"
+}
+
+### delete
+DELETE {{hostname}}/api/type/delete?id={{entry-id}} HTTP/1.1
+Authorization: Bearer {{user-token}} 
+
+### get page
+GET {{hostname}}/api/type/getPage?pageIndex=0&pageSize=15 HTTP/1.1
+Authorization: Bearer {{user-token}} 

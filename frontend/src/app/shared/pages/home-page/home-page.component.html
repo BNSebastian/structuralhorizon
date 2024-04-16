@@ -1,0 +1,38 @@
+<div class="h-screen flex flex-col md:flex-row items-center background-main">
+  <div class="w-full my-10 md:mb-0">
+    <p
+      class="mx-auto drop-shadow-2xl text-center font-extrabold text-4xl md:text-7xl"
+    >
+      Wind power
+    </p>
+    <p class="mx-auto text-center text-2xl md:text-4xl italic">
+      Save your progress with a few clicks.
+    </p>
+  </div>
+
+  <div class="w-full lg:mx-4 md:mx-3 sm:mx-2">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> About us </mat-panel-title>
+          <mat-panel-description>
+            <mat-icon>info</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>TODO.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Code of conduct </mat-panel-title>
+          <mat-panel-description>
+            <mat-icon>gavel</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Behave like a decent human being</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

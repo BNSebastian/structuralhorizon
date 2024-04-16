@@ -1,0 +1,16 @@
+<div class="h-screen flex-col justify-center items-center background-main">
+  <div class="p-4">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Create a new project </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-project-save
+          (onSaveSuccess)="listComponent.handleSaveSuccess()"
+        ></app-project-save>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <app-project-list #listComponent></app-project-list>
+</div>

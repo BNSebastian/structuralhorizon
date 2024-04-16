@@ -1,0 +1,14 @@
+<div class="flex justify-center mb-2">
+  <button
+    mat-mini-fab
+    color="{{ link.color }}"
+    matTooltip="{{ link.tooltip }}"
+    matTooltipPosition="right"
+    [routerLink]="[link.url]"
+    routerLinkActive="{{ link.highlight }}"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="handleClick($event, link.name)"
+  >
+    <mat-icon>{{ link.icon }}</mat-icon>
+  </button>
+</div>

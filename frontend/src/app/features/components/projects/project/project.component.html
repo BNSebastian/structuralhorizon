@@ -1,0 +1,31 @@
+<div class="flex flex-wrap m-2">
+  @for (item of data; track $index) {
+  <div class="w-full sm:w-1/2 md:w-1/3 p-2">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Turbine: {{ item.turbine.number }}</mat-card-title>
+        <mat-card-subtitle>Employee: {{ item.user }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="mt-2">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>Contents</mat-expansion-panel-header>
+            <div>Activity type: {{ item.type.name }}</div>
+            <div>Description: {{ item.description }}</div>
+            <div>Reasons: {{ item.reasons }}</div>
+            <div>Work performed: {{ item.workPerformed }}</div>
+            <div>Started on: {{ item.startedOn | date : "medium" }}</div>
+            <div>Ended on: {{ item.endedOn | date : "medium" }}</div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+      <!-- buttons -->
+      <mat-card-actions align="end">
+        <button (click)="edit(item.turbine.number)" mat-icon-button>
+          <mat-icon color="warn">report</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  }
+</div>

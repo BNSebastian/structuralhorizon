@@ -1,0 +1,14 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "authToken": "{{login.response.body.token}}"
+        },
+        "development": {
+            "protocol": "http",
+            "host": "localhost",
+            "port": "8080"
+        }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

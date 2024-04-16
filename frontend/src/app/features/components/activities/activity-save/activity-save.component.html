@@ -1,0 +1,73 @@
+@if (project) {
+<form [formGroup]="activityForm" (ngSubmit)="submitForm()">
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>turbine id</mat-label>
+    <mat-select matInput formControlName="turbineId">
+      @for (item of project.turbines; track $index) {
+      <mat-option value="{{ item.id }}"
+        >{{ item.number }} ({{ item.location }})</mat-option
+      >
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>type id</mat-label>
+    <mat-select matInput formControlName="typeId">
+      @for (item of types; track $index) {
+      <mat-option value="{{ item.id }}">{{ item.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>description</mat-label>
+    <input matInput formControlName="description" />
+    @if (activityForm.controls['description'].hasError('required')) {
+    <mat-error>This field is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>work performed</mat-label>
+    <input matInput formControlName="workPerformed" />
+    @if (activityForm.controls['workPerformed'].hasError('required')) {
+    <mat-error>This field is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>reasons</mat-label>
+    <input matInput formControlName="reasons" />
+    @if (activityForm.controls['reasons'].hasError('required')) {
+    <mat-error>This field is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>started on</mat-label>
+    <input
+      matInput
+      formControlName="startedOn"
+      type="datetime-local"
+      class="w-full bg-white border border-gray-300 p-2 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
+      min="2023-12-01T00:00"
+      max="2030-12-01T00:00"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="w-full" floatLabel="always">
+    <mat-label>ended on</mat-label>
+    <input
+      matInput
+      formControlName="endedOn"
+      type="datetime-local"
+      class="w-full bg-white border border-gray-300 p-2 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
+      min="2023-12-01T00:00"
+      max="2030-12-01T00:00"
+    />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="w-full">Save</button>
+</form>
+}
