@@ -83,8 +83,7 @@ public class ProjectService implements IProjectService {
 
         if (optionalTurbine.isPresent()) {
             Project existingEntity = optionalTurbine.get();
-            existingEntity.setNumber(request.getNumber());
-            existingEntity.setLocation(request.getLocation());
+            //TODO: add entity specific parameters
             Project updatedEntity = repository.save(existingEntity);
 
             log.info("update:: entity with id: {} updated", updatedEntity.getId());
@@ -105,13 +104,9 @@ public class ProjectService implements IProjectService {
         Optional<Project> entityOptional = repository.findById(id);
 
         return entityOptional.map(entity -> {
-            if (entity != null) {
-                repository.delete(entity);
-                log.info("delete:: deleted entity with id: {}", id);
-                return true;
-            } else {
-                return false;
-            }
+            repository.delete(entity);
+            log.info("delete:: deleted entity with id: {}", id);
+            return true;
         }).orElseGet(() -> {
             log.error("delete:: could not delete entity with id: {}", id);
             return false;

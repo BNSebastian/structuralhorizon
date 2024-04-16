@@ -2,12 +2,12 @@ package StructuralHorizon.features.materials.concrete.models;
 
 import java.util.UUID;
 
+import StructuralHorizon.features.Value;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,15 +18,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "turbines")
 public class Concrete {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String number;
+    private String name;
 
-    private String location;
+    /**
+     * @symbol: f_ck
+     */
+    private Value characteristicCompressiveStrength;
+
+    /**
+     * @symbol: f_ctk
+     */
+    private Value characteristicTensileStrength;
 
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =

@@ -24,12 +24,6 @@ public class ConcreteService implements IConcreteService {
     @Autowired
     private IConcreteRepository repository;
 
-    /**
-     * Saves a new Turbine to the database.
-     *
-     * @param request the Turbine data to be saved
-     * @return the saved Turbine data, or an empty optional if the save failed
-     */
     @Override
     public Optional<ConcreteDto> save(ConcreteCreateDto request) {
         if (request != null) {
@@ -48,29 +42,16 @@ public class ConcreteService implements IConcreteService {
         }
     }
 
-    /**
-     * Retrieves all Turbines.
-     *
-     * @return an optional containing the list of Turbines, or an empty optional if
-     *         no Turbines were found
-     */
     @Override
     public Optional<List<ConcreteDto>> getAll() {
         List<Concrete> users = repository.findAll();
         log.info("getAll:: retrieving all entities");
-        return Optional.ofNullable(users
+        return Optional.of(users
                 .stream()
                 .map(ConcreteMapper::mapToDto)
                 .collect(Collectors.toList()));
     }
 
-    /**
-     * Retrieves a Turbine by its ID.
-     *
-     * @param id the ID of the Turbine to retrieve
-     * @return an optional containing the Turbine data, or an empty optional if no
-     *         Turbine was found with the given ID
-     */
     @Override
     public Optional<ConcreteDto> getById(UUID id) {
         if (id == null) {
@@ -89,12 +70,6 @@ public class ConcreteService implements IConcreteService {
         });
     }
 
-    /**
-     * Updates an existing Turbine in the database.
-     *
-     * @param request the updated Turbine data
-     * @return the updated Turbine data, or an empty optional if the update failed
-     */
     @Override
     public Optional<ConcreteDto> update(ConcreteUpdateDto request) {
         if (request == null) {
@@ -113,8 +88,7 @@ public class ConcreteService implements IConcreteService {
 
         if (optionalTurbine.isPresent()) {
             Concrete existingEntity = optionalTurbine.get();
-            existingEntity.setNumber(request.getNumber());
-            existingEntity.setLocation(request.getLocation());
+            //TODO: add entity specific parameters
             Concrete updatedEntity = repository.save(existingEntity);
 
             log.info("update:: entity with id: {} updated", updatedEntity.getId());
@@ -125,13 +99,6 @@ public class ConcreteService implements IConcreteService {
         }
     }
 
-    /**
-     * Deletes a Turbine by its ID.
-     *
-     * @param id the ID of the Turbine to delete
-     * @return true if the Turbine was successfully deleted, or false if no Turbine
-     *         was found with the given ID
-     */
     @Override
     public Boolean delete(UUID id) {
         if (id == null) {
@@ -142,13 +109,9 @@ public class ConcreteService implements IConcreteService {
         Optional<Concrete> entityOptional = repository.findById(id);
 
         return entityOptional.map(entity -> {
-            if (entity != null) {
-                repository.delete(entity);
-                log.info("delete:: deleted entity with id: {}", id);
-                return true;
-            } else {
-                return false;
-            }
+            repository.delete(entity);
+            log.info("delete:: deleted entity with id: {}", id);
+            return true;
         }).orElseGet(() -> {
             log.error("delete:: could not delete entity with id: {}", id);
             return false;
