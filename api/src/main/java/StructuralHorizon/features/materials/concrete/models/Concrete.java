@@ -35,6 +35,16 @@ public class Concrete {
      */
     private Value characteristicTensileStrength;
 
+    /**
+     * @symbol: f_cd
+     */
+    private Value designCompressiveResistance;
+
+    /**
+     * @symbol: f_ctd
+     */
+    private Value designTensileResistance;
+
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =
     // "turbine_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))

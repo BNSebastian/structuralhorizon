@@ -22,29 +22,23 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    private String name;
+
     // CONCRETE PROPERTIES
 
     /**
      * @symbol: γ_c
      */
-    private Value partialSafetyFactor;
+    private Float partialSafetyFactor;
+
+    private List<Float> partialSafetyFactorList = new ArrayList<>(List.of(1.2f, 1.5f));
 
     /**
      * @symbol: α_cc
      */
-    private float longTermCoefficient;
+    private Float longTermCoefficient;
 
-    /**
-     * @symbol: f_cd
-     */
-    private Value designCompressiveResistance;
-
-    /**
-     * @symbol: f_ctd
-     */
-    private Value designTensileResistance;
-
-
+    private List<Float> longTermCoefficientList = new ArrayList<>(List.of(0.8f, 0.9f, 1f));
 
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =
