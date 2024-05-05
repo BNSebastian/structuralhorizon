@@ -9,7 +9,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
-public class GenericService<T extends GenericEntity>{
+public class GenericService<T extends GenericEntity> implements IGenericService<T> {
+
     @Autowired
     protected IGenericRepository<T> genericRepository;
 
@@ -18,7 +19,7 @@ public class GenericService<T extends GenericEntity>{
             T savedEntity = genericRepository.save(request);
             log.info("save:: created entity with id: {}", savedEntity.getId());
             return Optional.of(savedEntity);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             log.error("save:: could not map request to entity");
             return Optional.empty();
         }
