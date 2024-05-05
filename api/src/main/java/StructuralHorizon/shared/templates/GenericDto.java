@@ -1,2 +1,6 @@
-package StructuralHorizon.shared.templates;public class GenericDto {
+package StructuralHorizon.shared.templates;
+
+
+public class GenericDto {
+
 }
