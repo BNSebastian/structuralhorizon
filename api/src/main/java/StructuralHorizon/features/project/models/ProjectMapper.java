@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProjectMapper {
-	public static ProjectDto mapToDto(Project request) {
+	public static ProjectDto mapToDto(ProjectEntity request) {
 		ProjectDto.ProjectDtoBuilder builder = ProjectDto.builder()
 				.id(request.getId());
 		// .number(request.getNumber())
@@ -22,8 +22,8 @@ public class ProjectMapper {
 		return builder.build();
 	}
 
-	public static Project mapToEntity(ProjectCreateDto request) {
-		return Project
+	public static ProjectEntity mapToEntity(NewProjectDto request) {
+		return ProjectEntity
 				.builder()
 				// .number(request.getNumber())
 				// .location(request.getLocation())

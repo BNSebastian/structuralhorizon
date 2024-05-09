@@ -20,11 +20,11 @@ public class ProjectService implements IProjectService {
     private IProjectRepository repository;
 
     @Override
-    public Optional<ProjectDto> save(ProjectCreateDto request) {
+    public Optional<ProjectDto> save(NewProjectDto request) {
         if (request != null) {
-            Project pendingEntity = ProjectMapper.mapToEntity(request);
+            ProjectEntity pendingEntity = ProjectMapper.mapToEntity(request);
             if (pendingEntity != null) {
-                Project savedEntity = repository.save(pendingEntity);
+                ProjectEntity savedEntity = repository.save(pendingEntity);
                 log.info("save:: created entity with id: {}", savedEntity.getId());
                 return Optional.of(ProjectMapper.mapToDto(savedEntity));
             } else {
@@ -39,7 +39,7 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Optional<List<ProjectDto>> getAll() {
-        List<Project> entries = repository.findAll();
+        List<ProjectEntity> entries = repository.findAll();
         log.info("getAll:: retrieving all entities");
         return Optional.of(entries
                 .stream()
@@ -54,7 +54,7 @@ public class ProjectService implements IProjectService {
             return Optional.empty();
         }
 
-        Optional<Project> entityOptional = repository.findById(id);
+        Optional<ProjectEntity> entityOptional = repository.findById(id);
 
         return entityOptional.map(entity -> {
             log.info("getById:: retrieved entity with id: {}", id);
@@ -66,7 +66,7 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public Optional<ProjectDto> update(ProjectUpdateDto request) {
+    public Optional<ProjectDto> update(UpdateProjectDto request) {
         if (request == null) {
             log.error("update:: invalid request");
             return Optional.empty();
@@ -79,12 +79,12 @@ public class ProjectService implements IProjectService {
             return Optional.empty();
         }
 
-        Optional<Project> optionalTurbine = repository.findById(id);
+        Optional<ProjectEntity> optionalTurbine = repository.findById(id);
 
         if (optionalTurbine.isPresent()) {
-            Project existingEntity = optionalTurbine.get();
-            //TODO: add entity specific parameters
-            Project updatedEntity = repository.save(existingEntity);
+            ProjectEntity existingEntity = optionalTurbine.get();
+            // TODO: add entity specific parameters
+            ProjectEntity updatedEntity = repository.save(existingEntity);
 
             log.info("update:: entity with id: {} updated", updatedEntity.getId());
             return Optional.of(ProjectMapper.mapToDto(updatedEntity));
@@ -101,7 +101,7 @@ public class ProjectService implements IProjectService {
             return false;
         }
 
-        Optional<Project> entityOptional = repository.findById(id);
+        Optional<ProjectEntity> entityOptional = repository.findById(id);
 
         return entityOptional.map(entity -> {
             repository.delete(entity);
@@ -114,7 +114,7 @@ public class ProjectService implements IProjectService {
     }
 
     public Page<ProjectDto> getPage(int pageIndex, int pageSize) {
-        Page<Project> page = repository.findAll(PageRequest.of(pageIndex, pageSize));
+        Page<ProjectEntity> page = repository.findAll(PageRequest.of(pageIndex, pageSize));
         log.info("getPage:: returning page with index '{}' and size '{}'", pageIndex, pageSize);
         return page.map(ProjectMapper::mapToDto);
     }

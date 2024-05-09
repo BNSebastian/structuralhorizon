@@ -1,8 +1,8 @@
 package StructuralHorizon.features.project;
 
-import StructuralHorizon.features.project.models.ProjectCreateDto;
+import StructuralHorizon.features.project.models.NewProjectDto;
 import StructuralHorizon.features.project.models.ProjectDto;
-import StructuralHorizon.features.project.models.ProjectUpdateDto;
+import StructuralHorizon.features.project.models.UpdateProjectDto;
 import StructuralHorizon.shared.Endpoints;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ProjectController {
     private final IProjectService service;
 
     @PostMapping("/save")
-    public ResponseEntity<ProjectDto> save(@RequestBody ProjectCreateDto request) {
+    public ResponseEntity<ProjectDto> save(@RequestBody NewProjectDto request) {
         Optional<ProjectDto> optionalEntity = service.save(request);
         return optionalEntity
                 .map(ResponseEntity::ok)
@@ -47,7 +47,7 @@ public class ProjectController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ProjectDto> update(@RequestBody ProjectUpdateDto request) {
+    public ResponseEntity<ProjectDto> update(@RequestBody UpdateProjectDto request) {
         Optional<ProjectDto> optionalEntity = service.update(request);
         return optionalEntity
                 .map(ResponseEntity::ok)
