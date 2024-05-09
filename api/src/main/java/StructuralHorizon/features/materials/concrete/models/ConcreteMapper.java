@@ -20,7 +20,7 @@ public class ConcreteMapper {
 		return builder.build();
 	}
 
-	public static Concrete mapToEntity(ConcreteCreateDto request) {
+	public static Concrete mapToEntity(ConcreteRequest request) {
 		return Concrete
 				.builder()
 				.build();

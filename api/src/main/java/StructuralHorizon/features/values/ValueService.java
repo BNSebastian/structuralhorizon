@@ -1,2 +1,4 @@
-package StructuralHorizon.features.values;public class ValueService {
+package StructuralHorizon.features.values;
+
+public class ValueService {
 }

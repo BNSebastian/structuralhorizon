@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import StructuralHorizon.features.materials.concrete.models.Concrete;
-import StructuralHorizon.features.materials.concrete.models.ConcreteCreateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteRequest;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
 import StructuralHorizon.features.materials.concrete.models.ConcreteMapper;
-import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateRequest;
 
 @Slf4j
 @Service
@@ -25,12 +25,11 @@ public class ConcreteService implements IConcreteService {
     private IConcreteRepository repository;
 
     @Override
-    public Optional<ConcreteDto> save(ConcreteCreateDto request) {
+    public Optional<ConcreteDto> save(ConcreteRequest request) {
         if (request != null) {
             Concrete pendingEntity = ConcreteMapper.mapToEntity(request);
             if (pendingEntity != null) {
                 Concrete savedEntity = repository.save(pendingEntity);
-                log.info("save:: created entity with id: {}", savedEntity.getId());
                 return Optional.of(ConcreteMapper.mapToDto(savedEntity));
             } else {
                 log.error("save:: could not map request to entity");
@@ -71,7 +70,7 @@ public class ConcreteService implements IConcreteService {
     }
 
     @Override
-    public Optional<ConcreteDto> update(ConcreteUpdateDto request) {
+    public Optional<ConcreteDto> update(ConcreteUpdateRequest request) {
         if (request == null) {
             log.error("update:: invalid request");
             return Optional.empty();

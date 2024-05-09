@@ -6,18 +6,18 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 
-import StructuralHorizon.features.materials.concrete.models.ConcreteCreateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteRequest;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
-import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateDto;
+import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateRequest;
 
 public interface IConcreteService {
-    Optional<ConcreteDto> save(ConcreteCreateDto request);
+    Optional<ConcreteDto> save(ConcreteRequest request);
 
     Optional<List<ConcreteDto>> getAll();
 
     Optional<ConcreteDto> getById(UUID id);
 
-    Optional<ConcreteDto> update(ConcreteUpdateDto request);
+    Optional<ConcreteDto> update(ConcreteUpdateRequest request);
 
     Boolean delete(UUID id);
 

@@ -2,12 +2,13 @@ package StructuralHorizon.features.materials.concrete.models;
 
 import java.util.UUID;
 
-import StructuralHorizon.features.Value;
+import StructuralHorizon.features.values.Value;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,25 +26,29 @@ public class Concrete {
 
     private String name;
 
-    /**
-     * @symbol: f_ck
-     */
-    private Value characteristicCompressiveStrength;
+    // /**
+    // * @symbol: f_ck
+    // */
+    // @OneToOne(cascade = CascadeType.ALL)
+    // private Value characteristicCompressiveStrength;
 
-    /**
-     * @symbol: f_ctk
-     */
-    private Value characteristicTensileStrength;
+    // /**
+    // * @symbol: f_ctk
+    // */
+    // @OneToOne(cascade = CascadeType.ALL)
+    // private Value characteristicTensileStrength;
 
-    /**
-     * @symbol: f_cd
-     */
-    private Value designCompressiveResistance;
+    // /**
+    // * @symbol: f_cd
+    // */
+    // @OneToOne(cascade = CascadeType.ALL)
+    // private Value designCompressiveResistance;
 
-    /**
-     * @symbol: f_ctd
-     */
-    private Value designTensileResistance;
+    // /**
+    // * @symbol: f_ctd
+    // */
+    // @OneToOne(cascade = CascadeType.ALL)
+    // private Value designTensileResistance;
 
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =
