@@ -2,7 +2,7 @@ package StructuralHorizon.features.materials.concrete.models;
 
 import java.util.UUID;
 
-import StructuralHorizon.features.values.Value;
+import StructuralHorizon.features.values.models.Value;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

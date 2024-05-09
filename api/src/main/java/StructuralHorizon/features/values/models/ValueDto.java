@@ -1,4 +1,4 @@
-package StructuralHorizon.features.values;
+package StructuralHorizon.features.values.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

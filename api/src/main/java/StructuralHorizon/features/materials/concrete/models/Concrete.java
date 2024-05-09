@@ -2,7 +2,7 @@ package StructuralHorizon.features.materials.concrete.models;
 
 import java.util.UUID;
 
-import StructuralHorizon.features.values.Value;
+import StructuralHorizon.features.values.models.Value;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
