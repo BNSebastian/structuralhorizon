@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 public class ConcreteMapper {
 	public static ConcreteDto mapToDto(Concrete request) {
 		ConcreteDto.ConcreteDtoBuilder builder = ConcreteDto.builder()
-														   .id(request.getId())
-														   .number(request.getNumber())
-														   .location(request.getLocation());
+				.id(request.getId());
 
 		// if (request.getProjects() != null) {
 		// builder.projects(request.getProjects()
@@ -25,8 +23,6 @@ public class ConcreteMapper {
 	public static Concrete mapToEntity(ConcreteCreateDto request) {
 		return Concrete
 				.builder()
-				.number(request.getNumber())
-				.location(request.getLocation())
 				.build();
 	}
 }
