@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import StructuralHorizon.features.materials.concrete.models.Concrete;
-import StructuralHorizon.features.materials.concrete.models.ConcreteRequest;
+import StructuralHorizon.features.materials.concrete.models.ConcreteCreationRequest;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
 import StructuralHorizon.features.materials.concrete.models.ConcreteMapper;
 import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateRequest;
@@ -25,7 +25,7 @@ public class ConcreteService implements IConcreteService {
     private IConcreteRepository repository;
 
     @Override
-    public Optional<ConcreteDto> save(ConcreteRequest request) {
+    public Optional<ConcreteDto> save(ConcreteCreationRequest request) {
         if (request != null) {
             Concrete pendingEntity = ConcreteMapper.mapToEntity(request);
             if (pendingEntity != null) {

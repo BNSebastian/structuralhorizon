@@ -56,8 +56,8 @@ public class SecurityConfiguration {
 			auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/user/**"))
 					.authenticated();
 
-			/* ACTIVITIES ********************************************/
-			auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/activity/**"))
+			/* materials ********************************************/
+			auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/materials/concrete/**"))
 					.authenticated();
 
 			/* TYPES ********************************************/

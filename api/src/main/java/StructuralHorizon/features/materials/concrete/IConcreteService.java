@@ -6,12 +6,12 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 
-import StructuralHorizon.features.materials.concrete.models.ConcreteRequest;
+import StructuralHorizon.features.materials.concrete.models.ConcreteCreationRequest;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
 import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateRequest;
 
 public interface IConcreteService {
-    Optional<ConcreteDto> save(ConcreteRequest request);
+    Optional<ConcreteDto> save(ConcreteCreationRequest request);
 
     Optional<List<ConcreteDto>> getAll();
 

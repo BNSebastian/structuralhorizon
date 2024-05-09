@@ -26,29 +26,29 @@ public class Concrete {
 
     private String name;
 
-    // /**
-    // * @symbol: f_ck
-    // */
-    // @OneToOne(cascade = CascadeType.ALL)
-    // private Value characteristicCompressiveStrength;
+    /**
+     * @symbol: f_ck
+     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Value characteristicCompressiveStrength;
 
-    // /**
-    // * @symbol: f_ctk
-    // */
-    // @OneToOne(cascade = CascadeType.ALL)
-    // private Value characteristicTensileStrength;
+    /**
+     * @symbol: f_ctk
+     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Value characteristicTensileStrength;
 
-    // /**
-    // * @symbol: f_cd
-    // */
-    // @OneToOne(cascade = CascadeType.ALL)
-    // private Value designCompressiveResistance;
+    /**
+     * @symbol: f_cd
+     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Value designCompressiveResistance;
 
-    // /**
-    // * @symbol: f_ctd
-    // */
-    // @OneToOne(cascade = CascadeType.ALL)
-    // private Value designTensileResistance;
+    /**
+     * @symbol: f_ctd
+     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Value designTensileResistance;
 
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =

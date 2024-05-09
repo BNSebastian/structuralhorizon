@@ -1,4 +1,4 @@
-package StructuralHorizon.features.materials.concrete.models;
+package StructuralHorizon.features.values;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ConcreteRequest {
-    String number;
-    String location;
+public class ValueDto {
+  private Double number;
+  private String unit;
 }
