@@ -2,13 +2,10 @@ package StructuralHorizon.features.materials.concrete.models;
 
 import java.util.UUID;
 
-import StructuralHorizon.features.values.models.Value;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,29 +23,17 @@ public class Concrete {
 
     private String name;
 
-    /**
-     * @symbol: f_ck
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private Value characteristicCompressiveStrength;
+    private Double characteristicCompressiveStrength;
+    private String characteristicCompressiveStrength_unit;
 
-    /**
-     * @symbol: f_ctk
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private Value characteristicTensileStrength;
+    private Double characteristicTensileStrength;
+    private String characteristicTensileStrength_unit;
 
-    /**
-     * @symbol: f_cd
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private Value designCompressiveResistance;
+    private Double designCompressiveResistance;
+    private String designCompressiveResistance_unit;
 
-    /**
-     * @symbol: f_ctd
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private Value designTensileResistance;
+    private Double designTensileResistance;
+    private String designTensileResistance_unit;
 
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =

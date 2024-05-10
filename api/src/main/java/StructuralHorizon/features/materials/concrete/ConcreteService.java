@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import StructuralHorizon.features.materials.concrete.models.Concrete;
-import StructuralHorizon.features.materials.concrete.models.ConcreteCreationRequest;
+import StructuralHorizon.features.materials.concrete.models.ConcreteDtoCreate;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
 import StructuralHorizon.features.materials.concrete.models.ConcreteMapper;
-import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateRequest;
+import StructuralHorizon.features.materials.concrete.models.ConcreteDtoUpdate;
+import StructuralHorizon.features.values.IValueRepository;
+import StructuralHorizon.features.values.models.Value;
+import StructuralHorizon.features.values.models.ValueDto;
 
 @Slf4j
 @Service
@@ -24,8 +27,11 @@ public class ConcreteService implements IConcreteService {
     @Autowired
     private IConcreteRepository repository;
 
+    @Autowired
+    private IValueRepository valueRepository;
+
     @Override
-    public Optional<ConcreteDto> save(ConcreteCreationRequest request) {
+    public Optional<ConcreteDto> save(ConcreteDtoCreate request) {
         if (request != null) {
             Concrete pendingEntity = ConcreteMapper.mapToEntity(request);
             if (pendingEntity != null) {
@@ -70,7 +76,7 @@ public class ConcreteService implements IConcreteService {
     }
 
     @Override
-    public Optional<ConcreteDto> update(ConcreteUpdateRequest request) {
+    public Optional<ConcreteDto> update(ConcreteDtoUpdate request) {
         if (request == null) {
             log.error("update:: invalid request");
             return Optional.empty();
@@ -88,6 +94,17 @@ public class ConcreteService implements IConcreteService {
         if (optionalTurbine.isPresent()) {
             Concrete existingEntity = optionalTurbine.get();
             // TODO: add entity specific parameters
+            // if (request.getCharacteristicCompressiveStrength() != null) {
+            // if (existingEntity.getCharacteristicCompressiveStrength() == null) {
+            // Value newValue =
+            // valueRepository.save(request.getCharacteristicCompressiveStrength());
+            // existingEntity.setCharacteristicCompressiveStrength(newValue);
+            // } else {
+            // existingEntity.setCharacteristicCompressiveStrength(request.getCharacteristicCompressiveStrength());
+            // }
+
+            // }
+
             Concrete updatedEntity = repository.save(existingEntity);
 
             log.info("update:: entity with id: {} updated", updatedEntity.getId());

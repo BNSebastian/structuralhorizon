@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import StructuralHorizon.features.materials.concrete.models.ConcreteCreationRequest;
+import StructuralHorizon.features.materials.concrete.models.ConcreteDtoCreate;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
-import StructuralHorizon.features.materials.concrete.models.ConcreteUpdateRequest;
+import StructuralHorizon.features.materials.concrete.models.ConcreteDtoUpdate;
 
 @RestController
 @RequestMapping(Endpoints.concrete)
@@ -31,7 +31,7 @@ public class ConcreteController {
     private final IConcreteService service;
 
     @PostMapping("/save")
-    public ResponseEntity<ConcreteDto> save(@RequestBody ConcreteCreationRequest request) {
+    public ResponseEntity<ConcreteDto> save(@RequestBody ConcreteDtoCreate request) {
         Optional<ConcreteDto> optionalEntity = service.save(request);
         return optionalEntity
                 .map(ResponseEntity::ok)
@@ -55,7 +55,7 @@ public class ConcreteController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ConcreteDto> update(@RequestBody ConcreteUpdateRequest request) {
+    public ResponseEntity<ConcreteDto> update(@RequestBody ConcreteDtoUpdate request) {
         Optional<ConcreteDto> optionalEntity = service.update(request);
         return optionalEntity
                 .map(ResponseEntity::ok)

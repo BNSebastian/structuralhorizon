@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ConcreteDto {
+public class ConcreteDtoUpdate {
     private UUID id;
 
     private String name;
