@@ -5,13 +5,9 @@ public class ConcreteMapper {
 		return ConcreteDto.builder()
 				.name(entity.getName())
 				.characteristicCompressiveStrength(entity.getCharacteristicCompressiveStrength())
-				.characteristicCompressiveStrength_unit(entity.getCharacteristicCompressiveStrength_unit())
 				.characteristicTensileStrength(entity.getCharacteristicTensileStrength())
-				.characteristicTensileStrength_unit(entity.getCharacteristicTensileStrength_unit())
 				.designCompressiveResistance(entity.getDesignCompressiveResistance())
-				.designCompressiveResistance_unit(entity.getDesignCompressiveResistance_unit())
 				.designTensileResistance(entity.getDesignTensileResistance())
-				.designTensileResistance_unit(entity.getDesignTensileResistance_unit())
 				.build();
 	}
 

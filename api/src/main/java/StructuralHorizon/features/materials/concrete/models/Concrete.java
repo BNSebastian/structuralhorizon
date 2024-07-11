@@ -2,6 +2,7 @@ package StructuralHorizon.features.materials.concrete.models;
 
 import java.util.UUID;
 
+import StructuralHorizon.features.values.Value;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,17 +24,13 @@ public class Concrete {
 
     private String name;
 
-    private Double characteristicCompressiveStrength;
-    private String characteristicCompressiveStrength_unit;
+    private Value characteristicCompressiveStrength;
 
-    private Double characteristicTensileStrength;
-    private String characteristicTensileStrength_unit;
+    private Value characteristicTensileStrength;
 
-    private Double designCompressiveResistance;
-    private String designCompressiveResistance_unit;
+    private Value designCompressiveResistance;
 
-    private Double designTensileResistance;
-    private String designTensileResistance_unit;
+    private Value designTensileResistance;
 
     // @ManyToMany
     // @JoinTable(name = "project_turbine", joinColumns = @JoinColumn(name =

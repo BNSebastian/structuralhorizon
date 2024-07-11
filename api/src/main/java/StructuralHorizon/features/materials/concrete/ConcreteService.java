@@ -17,8 +17,7 @@ import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
 import StructuralHorizon.features.materials.concrete.models.ConcreteMapper;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDtoUpdate;
 import StructuralHorizon.features.values.IValueRepository;
-import StructuralHorizon.features.values.models.Value;
-import StructuralHorizon.features.values.models.ValueDto;
+import StructuralHorizon.features.values.Value;
 
 @Slf4j
 @Service
@@ -94,19 +93,7 @@ public class ConcreteService implements IConcreteService {
         if (optionalTurbine.isPresent()) {
             Concrete existingEntity = optionalTurbine.get();
             // TODO: add entity specific parameters
-            // if (request.getCharacteristicCompressiveStrength() != null) {
-            // if (existingEntity.getCharacteristicCompressiveStrength() == null) {
-            // Value newValue =
-            // valueRepository.save(request.getCharacteristicCompressiveStrength());
-            // existingEntity.setCharacteristicCompressiveStrength(newValue);
-            // } else {
-            // existingEntity.setCharacteristicCompressiveStrength(request.getCharacteristicCompressiveStrength());
-            // }
-
-            // }
-
             Concrete updatedEntity = repository.save(existingEntity);
-
             log.info("update:: entity with id: {} updated", updatedEntity.getId());
             return Optional.of(ConcreteMapper.mapToDto(updatedEntity));
         } else {
@@ -138,6 +125,28 @@ public class ConcreteService implements IConcreteService {
         Page<Concrete> page = repository.findAll(PageRequest.of(pageIndex, pageSize));
         log.info("getPage:: returning page with index '{}' and size '{}'", pageIndex, pageSize);
         return page.map(ConcreteMapper::mapToDto);
+    }
+
+    @Override
+    public Optional<ConcreteDto> setCharacteristicCompressiveStrength(UUID id, Value value) {
+        if (id == null) {
+            log.error("setCharacteristicCompressiveStrength:: id is null");
+            return Optional.empty();
+        }
+
+        Optional<Concrete> entityOptional = repository.findById(id);
+
+        return entityOptional.map(entity -> {
+            if (entity.getCharacteristicCompressiveStrength() == null) {
+                entity.setCharacteristicCompressiveStrength(valueRepository.save(value));
+            } else {
+                entity.setCharacteristicCompressiveStrength(value);
+            }
+            return Optional.of(ConcreteMapper.mapToDto(entity));
+        }).orElseGet(() -> {
+            log.error("setCharacteristicCompressiveStrength:: could not retrieve entity with id: {}", id);
+            return Optional.empty();
+        });
     }
 
 }

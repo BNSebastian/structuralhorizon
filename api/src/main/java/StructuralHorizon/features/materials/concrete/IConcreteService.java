@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDtoCreate;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDto;
 import StructuralHorizon.features.materials.concrete.models.ConcreteDtoUpdate;
-import StructuralHorizon.features.values.models.ValueDto;
+import StructuralHorizon.features.values.Value;
 
 public interface IConcreteService {
     Optional<ConcreteDto> save(ConcreteDtoCreate request);
@@ -23,4 +23,14 @@ public interface IConcreteService {
     Boolean delete(UUID id);
 
     Page<ConcreteDto> getPage(int pageIndex, int pageSize);
+
+    Optional<ConcreteDto> setCharacteristicCompressiveStrength(UUID id, Value value);
 }
+
+// private Value characteristicCompressiveStrength;
+
+// private Value characteristicTensileStrength;
+
+// private Value designCompressiveResistance;
+
+// private Value designTensileResistance;

@@ -1,4 +1,4 @@
-package StructuralHorizon.features.values.models;
+package StructuralHorizon.features.values;
 
 import java.util.UUID;
 
